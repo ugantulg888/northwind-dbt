@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: obt_order_fulfillment
+    description: >
+      Order-based table combining fact_order_fulfillment with all related dimensions.
+      One row per order, fully denormalized for analytics.
+    columns:
+      - name: orderid
+        description: Unique order identifier
+        tests:
+          - not_null
+          - unique

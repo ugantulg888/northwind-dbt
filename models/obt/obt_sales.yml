@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: obt_sales
+    description: >
+      Sales OBT combining fact_sales with all related dimensions.
+      One row per order line, fully denormalized for analytics.
+    columns:
+      - name: saleskey
+        description: Surrogate key for the sales transaction
+        tests:
+          - not_null
+          - unique
