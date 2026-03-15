@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: >
+      Transaction fact table at the order line grain.
+      One row per OrderID + ProductID.
+    columns:
+      - name: saleskey
+        description: Surrogate key for the sales transaction
+        tests:
+          - not_null
+          - unique
+
+      - name: orderid
+        description: Degenerate dimension for the order
+        tests:
+          - not_null
+
+      - name: productkey
+        description: Foreign key to dim_product
+
+      - name: customerkey
+        description: Foreign key to dim_customer
+
+      - name: employeekey
+        description: Foreign key to dim_employee
+
+      - name: orderdatekey
+        description: Foreign key to dim_date
+
+      - name: soldamount
+        description: Extended price minus discount

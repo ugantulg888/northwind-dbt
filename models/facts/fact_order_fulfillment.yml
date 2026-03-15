@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: fact_order_fulfillment
+    description: >
+      Order-level accumulating snapshot fact table.
+      One row per order, tracking fulfillment lifecycle metrics.
+    columns:
+      - name: orderid
+        description: Degenerate dimension for the order ID
+        tests:
+          - not_null
+          - unique
+
+      - name: customerkey
+        description: Foreign key to dim_customer
+
+      - name: employeekey
+        description: Foreign key to dim_employee
+
+      - name: orderdatekey
+        description: Role-played date key for order date
+
+      - name: requireddatekey
+        description: Role-played date key for required date
+
+      - name: shippeddatekey
+        description: Role-played date key for shipped date
+
+      - name: quantity
+        description: Total quantity of items on the order
+
+      - name: totalorderamount
+        description: Total extended price minus discounts
+
+      - name: daysfromordertoshipped
+        description: Days elapsed from order to shipped
+
+      - name: daysfromordertorequired
+        description: Days between order and required date
+
+      - name: shippedtorequireddelta
+        description: Days shipped minus required date (positive = late)
+
+      - name: shippedontime
+        description: Y/N flag indicating if shipment was on time
